@@ -11,7 +11,7 @@ def callback_example(callback_function):
     Returns:
         None
     """
-    callback_function()
+    return callback_function()
 
 
 def callback_example_with_one_arg(callback_function, n):
@@ -25,95 +25,119 @@ def callback_example_with_one_arg(callback_function, n):
     Returns:
         None
     """
-    callback_function(n)
+    return callback_function(n)
 
 
-def print_the_thing():
+def return_the_thing():
     """
-    Prints 'The thing!'
+    Returns 'The thing!'
 
     Returns:
-        None
+        str: The string 'The thing!'
     """
-    print("The thing!")
+    return "The thing!"
 
 
-def print_the_other_thing():
+def return_the_other_thing():
     """
-    Prints 'The other thing!'
+    Returns 'The other thing!'
     Returns:
-        None
+        str: The string 'The other thing!'
     """
-    print("The other thing!")
+    return "The other thing!"
 
 
-def print_n_things(n):
+def return_n_things(n):
     """
-    Prints 'Thing n!' n times.
+    Returns list with 'Thing!' n times.
 
     Args:
-        n: The number of times to print 'Thing n!'
+        n: The number of 'Thing!'s in the list
 
     Returns:
-        None
+        list: A list with 'Thing!' n times.
     """
-    for _ in range(n):
-        print(f"Thing {n}!")
+    # Use a list comprehension to create the list.
+    return [f"Thing!" for _ in range(n)]
+
+    # Alternatively, you can use a for loop to create the list.
+    # things = []
+    # for _ in range(n):
+    #     things.append(f"Thing {n}!")
+    # return things
+
+    # for _ in range(n):
+    #     print(f"Thing {n}!")
 
 
-def count_n_times(n):
+def return_n_numbers(n):
     """
-    Prints numbers from 0 to n.
+    Returns numbers from 0 to n-1.
 
     Args:
-        n: The number of times to print numbers.
+        n: The number of numbers to return.
 
     Returns:
-        None
+        list: A list of numbers from 0 to n-1.
     """
-    for i in range(n):
-        print(i)
+    return [i for i in range(n)]
 
 
-def print_n_first_letters_of_alpha(n):
+def return_n_letters(n):
     """
-    Prints the first n letters of the alphabet.
+    Returns a list of the first n letters of the alphabet.
 
     Args:
-        n: The number of letters to print.
+        n: The number of letters to return.
 
     Returns:
-        None
+        list: A list of the first n letters of the alphabet.
     """
     alpha = "abcdefghijklmnopqrstuvwxyz"
-    print(alpha[:n])
+    return [alpha[i] for i in range(n)]
 
 
-def print_n_first_fibonacci_numbers(n):
+def return_first_n_fibonacci_numbers(n):
     """
-    Prints the first n Fibonacci numbers.
+    Returns a list of the first n Fibonacci numbers.
 
     Args:
-        n: The number of Fibonacci numbers to print.
+        n: The number of Fibonacci numbers to return.
 
     Returns:
-        None
+        list: A list of the first n Fibonacci numbers.
     """
-    a, b = 0, 1
-    for _ in range(n):
-        print(a)
-        a, b = b, a + b
+    # a, b = 0, 1
+    # for _ in range(n):
+    #     print(a)
+    #     a, b = b, a + b
+
+    fib = [0, 1]
+    for i in range(2, n):
+        fib.append(fib[i - 1] + fib[i - 2])
+    return fib
 
 
-def print_n_first_prime_numbers(n):
+def return_first_n_prime_numbers(n):
+    """
+    Returns a list of the first n prime numbers.
+
+    Args:
+        n: The number of prime numbers to return.
+
+    Returns:
+        list: A list of the first n prime numbers.
+    """
     pass
 
 
 # Call the callback_example function with different callback functions
 # as arguments.
 # There are no arguments being passed to the callback functions.
-callback_example(print_the_thing)
-callback_example(print_the_other_thing)
+the_thing = callback_example(return_the_thing)
+print("the_thing: ", the_thing)
+the_other_thing = callback_example(return_the_other_thing)
+print("the_other_thing: ", the_other_thing)
 
 # Call the callback_example_with_one_arg function with different callback functions
 # as arguments.
@@ -121,16 +145,20 @@ callback_example(print_the_other_thing)
 
 # The first argument is the callback function: print_n_things
 # The second argument is the argument to pass to the callback function: 2
-callback_example_with_one_arg(print_n_things, 2)
+two_things = callback_example_with_one_arg(return_n_things, 2)
+print("two_things: ", two_things)
 
 # The first argument is the callback function: count_n_times
 # The second argument is the argument to pass to the callback function: 3
-callback_example_with_one_arg(count_n_times, 3)
+three_numbers = callback_example_with_one_arg(return_n_numbers, 3)
+print("three_numbers: ", three_numbers)
 
 # The first argument is the callback function: print_n_first_letters_of_alpha
 # The second argument is the argument to pass to the callback function: 4
-callback_example_with_one_arg(print_n_first_letters_of_alpha, 4)
+four_letters = callback_example_with_one_arg(return_n_letters, 4)
+print("four_letters: ", four_letters)
 
 # The first argument is the callback function: print_n_first_fibonacci_numbers
 # The second argument is the argument to pass to the callback function: 5
-callback_example_with_one_arg(print_n_first_fibonacci_numbers, 5)
+first_five_fib = callback_example_with_one_arg(return_first_n_fibonacci_numbers, 5)
+print("first_five_fib: ", first_five_fib)
